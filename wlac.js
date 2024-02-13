@@ -56,10 +56,10 @@ function setup() {
     playButton.addEventListener('click', function() {
       if (bgMusic.isPlaying()) {
         bgMusic.pause();
-        this.textContent = "♫ Play Music";
+        this.textContent = "♫ Play";
       } else {
         bgMusic.loop();
-        this.textContent = "♫ Stop Music";
+        this.textContent = "♫ Stop";
       }
     });
   }
