@@ -17,7 +17,6 @@ function preload() {
   overlayImages.push(loadImage('./assets/disco-overlay.png'));
   overlayImages.push(loadImage('./assets/ripples-overlay.png'));
   overlayImages.push(loadImage('./assets/equation-overlay.png'));
-  overlayImages.push(loadImage('./assets/imagination-overlay.png'));
   overlayImages.push(loadImage('./assets/thoughtfulness-overlay.png'));
   overlayImages.push(loadImage('./assets/excitement-overlay.png'));
   overlayImages.push(loadImage('./assets/system-overlay.png'));
@@ -189,51 +188,57 @@ function getMostFrequentColor() {
           mostFrequentColor = {r, g, b};
       }
   }
-
-  console.log("Most Frequent Color:", mostFrequentColor);
   return mostFrequentColor;
 }
 
 function updatePlayButtonColor() {
     const color = getProminentNonExtremeColor();
+    
     if (color) {
         const playButton = document.getElementById('playButton');
-        const collab = document.getElementById('collab');
-    }
-    if (playButton) {
-      // Set button background color
-      playButton.style.backgroundColor = `rgb(${color.r}, ${color.g}, ${color.b})`;
+        const collab = document.getElementById('toggle');
 
-      // Determine the lightness of the background color
-      const [h, s, l] = rgbToHsl(color.r, color.g, color.b);
+      if (playButton) {
+        // Set button background color
+        playButton.style.backgroundColor = `rgb(${color.r}, ${color.g}, ${color.b})`;
 
-      // Set text color based on lightness: dark text for light backgrounds, light text for dark backgrounds
-      playButton.style.color = (l > 0.6) ? 'black' : 'white';
-    }
-    if (collab) {
-      // Determine the lightness of the background color
-      const [h, s, l] = rgbToHsl(color.r, color.g, color.b);
+        // Determine the lightness of the background color
+        const [h, s, l] = rgbToHsl(color.r, color.g, color.b);
 
-      // Set the element visible
-      collab.style.display = `block`;
+        // Set text color based on lightness: dark text for light backgrounds, light text for dark backgrounds
+        playButton.style.color = (l > 0.6) ? 'black' : 'white';
+      }
+      if (collab) {
 
-      // Update the text color of text within the collab element
-      collab.style.color = `rgb(${color.r}, ${color.g}, ${color.b})`;
+        const heart = document.getElementById('heart');
+        const details = document.getElementById('collab-details');
 
-      // Optionally, set collab's background color for contrast, ensuring text readability
-      // Note: This assumes you want a contrasting background for the collab element, not the same as the playButton's background
-      collab.style.backgroundColor = (l > 0.6) ? 'black' : 'white'; // Inverted from playButton's text color logic for contrast
-    }
+        // Determine the lightness of the background color
+        const [h, s, l] = rgbToHsl(color.r, color.g, color.b);
 
-    const collabLinks = document.querySelectorAll('.collablink');
+        // Set the element visible
+        collab.style.display = `block`;
 
-    // Iterate over each link with the class "collablinks" and set its color
-    collabLinks.forEach(link => {
-      // Determine the lightness of the background color
-      const [h, s, l] = rgbToHsl(color.r, color.g, color.b);
+        // Update the text color of text within the collab element
+        heart.style.color = `rgb(${color.r}, ${color.g}, ${color.b})`;
 
-      link.style.color = (l > 0.6) ? 'white' : 'black'; // Inverted from playButton's text color logic for contrast
-    });
+        // Optionally, set collab's background color for contrast, ensuring text readability
+        collab.style.backgroundColor = (l > 0.6) ? 'black' : 'white'; 
+        collab.style.color = (l > 0.6) ? 'white' : 'black';
+        details.style.backgroundColor = (l > 0.6) ? 'black' : 'white'; 
+        details.style.color = (l > 0.6) ? 'white' : 'black';
+      }
+
+      const collabLinks = document.querySelectorAll('.collab-link');
+
+      // Iterate over each link with the class "collablinks" and set its color
+      collabLinks.forEach(link => {
+        // Determine the lightness of the background color
+        const [h, s, l] = rgbToHsl(color.r, color.g, color.b);
+
+        link.style.color = `rgb(${color.r}, ${color.g}, ${color.b})`;
+      });
+  }
 }
 
 function rgbToHsl(r, g, b){
@@ -294,3 +299,18 @@ function getProminentNonExtremeColor() {
         return null; // No valid color found
     }
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('toggle').addEventListener('click', function() {
+    var collabDetails = document.getElementById('collab-details');
+    collabDetails.classList.toggle('open');
+    console.log('open');
+
+    // Optional: Scroll into view when opening
+    if (collabDetails.classList.contains('open')) {
+      setTimeout(function() {
+        collabDetails.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 500); // Ensure this matches your CSS transition time
+    }
+  });
+});

@@ -1,6 +1,7 @@
 html, body {
 	margin: 0;
 	padding: 0;
+	background: black;
 }
 canvas {
 	display: block;
@@ -17,7 +18,7 @@ h1 {
 	color: white;
 	border: 0;
 	padding: 5px 15px;
-	font-size: 3rem;
+	font-size: 2rem;
 }
 #playButton {
 	position: absolute;
@@ -27,14 +28,14 @@ h1 {
 	color: black;
 	border: 0;
 	padding: 5px 15px;
-	font-size: 2rem;
+	font-size: 1.5rem;
 	cursor: pointer;
 }
 #playButton:hover {
 	background: black;
 	color: white;
 }
-#collab {
+#toggle {
 	position: absolute;
 	bottom: 1rem;
 	left: 0;
@@ -42,11 +43,23 @@ h1 {
 	color: red;
 	border: 0;
 	padding: 5px 15px;
-	font-size: 1rem;
+	font-size: .8rem;
 	cursor: pointer;
 }
-a.collablink {
+.collab-link {
 	text-decoration: none;
+}
+#collab-details {
+	display: none;
+	padding: 2rem;
+	font-size: 1.2rem;
+	overflow: hidden;
+	max-height: 0;
+	transition: max-height 0.5s ease-out;
+}
+#collab-details.open {
+	display: block;
+	max-height: 100vh; /* Adjust this value based on the content size or set it to a large value to accommodate dynamic content sizes */
 }
 .sr-only {
     clip: rect(1px, 1px, 1px, 1px);
@@ -57,4 +70,15 @@ a.collablink {
     overflow: hidden;
     padding: 0;
     position: absolute;
+}
+@media screen and (min-width: 768px) {
+	h1 {
+		font-size: 3rem;
+	}
+	#playButton {
+		font-size: 2rem;
+	}
+	#toggle {
+		font-size: 1rem;
+	}
 }
