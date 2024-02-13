@@ -20,10 +20,12 @@ h1 {
 	padding: 5px 15px;
 	font-size: 2rem;
 }
-#playButton {
+#buttonsPosition {
 	position: absolute;
 	bottom: 1rem;
 	right: 1rem;
+}
+#playButton, #reloadButton {
 	background: white;
 	color: black;
 	border: 0;
@@ -31,7 +33,7 @@ h1 {
 	font-size: 1.5rem;
 	cursor: pointer;
 }
-#playButton:hover {
+#playButton:hover, #reloadButton:hover {
 	background: black;
 	color: white;
 }
@@ -49,6 +51,9 @@ h1 {
 .collab-link {
 	text-decoration: none;
 }
+.collab-link:hover, .collab-link:active {
+	text-decoration: underline;
+}
 #collab-details {
 	display: none;
 	padding: 2rem;
@@ -60,6 +65,9 @@ h1 {
 #collab-details.open {
 	display: block;
 	max-height: 100vh; /* Adjust this value based on the content size or set it to a large value to accommodate dynamic content sizes */
+}
+.signature {
+	color: gray;
 }
 .sr-only {
     clip: rect(1px, 1px, 1px, 1px);
@@ -75,7 +83,7 @@ h1 {
 	h1 {
 		font-size: 3rem;
 	}
-	#playButton {
+	#playButton, #reloadButton {
 		font-size: 2rem;
 	}
 	#toggle {

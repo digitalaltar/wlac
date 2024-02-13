@@ -313,4 +313,9 @@ document.addEventListener('DOMContentLoaded', function() {
       }, 500); // Ensure this matches your CSS transition time
     }
   });
+
+  var reloadButton = document.getElementById('reloadButton');
+  reloadButton.addEventListener('click', function() {
+    window.location.reload(); // Reloads the current document
+  });
 });
